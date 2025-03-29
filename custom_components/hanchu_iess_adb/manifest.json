@@ -1,0 +1,11 @@
+{
+    "domain": "hanchu_iess_adb",
+    "name": "Hanchu IESS",
+    "version": "0.0.1",
+    "codeowners": [],
+    "dependencies": [],
+    "documentation": "https://www.example.com",
+    "integration_type": "hub",
+    "iot_class": "cloud_polling",
+    "requirements": []
+  }
