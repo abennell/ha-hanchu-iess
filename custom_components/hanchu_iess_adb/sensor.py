@@ -104,7 +104,7 @@ class BatterySensor(SensorBase):
         self._attr_unique_id = f"{self._inverter.id}_battery"
 
         # The name of the entity
-        self._attr_name = f"{self._inverter.name} Battery"
+        self._attr_name = f"{self._inverter.serial_number} Battery"
 
         self._state = random.randint(0, 100)
 
@@ -132,7 +132,7 @@ class IlluminanceSensor(SensorBase):
         self._attr_unique_id = f"{self._inverter.id}_illuminance"
 
         # The name of the entity
-        self._attr_name = f"{self._inverter.name} Illuminance"
+        self._attr_name = f"{self._inverter.serial_number} Illuminance"
 
     @property
     def state(self):
