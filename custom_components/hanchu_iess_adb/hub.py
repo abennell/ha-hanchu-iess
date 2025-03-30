@@ -22,7 +22,7 @@ class Hub:
         self._hass = hass
         self._name = self.manufacturer
         self._id = f"{self.manufacturer}_HUB_ADB".lower()
-        self.rollers = [
+        self.inverters = [
             Inverter(id=f"{self._id}_1", 
                     serial_number="H016174360031",
                     brand="HANCHU",
