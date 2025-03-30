@@ -61,7 +61,7 @@ class SensorBase(Entity):
     @property
     def device_info(self):
         """Return information to link this entity with the correct device."""
-        return {"identifiers": {(DOMAIN, self._inverter.inverter_id)}}
+        return {"identifiers": {(DOMAIN, self._inverter.id)}}
 
     # This property is important to let HA know if this entity is online or not.
     # If an entity is offline (return False), the UI will refelect this.
@@ -101,7 +101,7 @@ class BatterySensor(SensorBase):
 
         # As per the sensor, this must be a unique value within this domain. This is done
         # by using the device ID, and appending "_battery"
-        self._attr_unique_id = f"{self._inverter.inverter_id}_battery"
+        self._attr_unique_id = f"{self._inverter.id}_battery"
 
         # The name of the entity
         self._attr_name = f"{self._inverter.name} Battery"
@@ -129,7 +129,7 @@ class IlluminanceSensor(SensorBase):
         super().__init__(inverter)
         # As per the sensor, this must be a unique value within this domain. This is done
         # by using the device ID, and appending "_battery"
-        self._attr_unique_id = f"{self._inverter.inverter_id}_illuminance"
+        self._attr_unique_id = f"{self._inverter.id}_illuminance"
 
         # The name of the entity
         self._attr_name = f"{self._inverter.name} Illuminance"
