@@ -6,6 +6,7 @@ from homeassistant.helpers.selector import (
     TextSelectorType,
 )
 from .const import DOMAIN  # pylint:disable=unused-import
+import logging
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -44,4 +45,4 @@ class IntegrationConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             ),
         }
 
-        return self.async_show_form(step_id="init", data_schema=vol.Schema(data_schema))
+        return self.async_show_form(step_id="init", data_schema=vol.Schema(data_schema), errors=errors)
