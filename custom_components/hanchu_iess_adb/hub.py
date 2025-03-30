@@ -21,7 +21,7 @@ class Hub:
         self._password = password
         self._hass = hass
         self._name = self.manufacturer
-        self._id = f"{self.manufacturer}_HUB_ADB".Lower()
+        self._id = f"{self.manufacturer}_HUB_ADB".lower()
         self.rollers = [
             Inverter(id=f"{self._id}_1", 
                     serial_number="H016174360031",
