@@ -24,7 +24,7 @@ class IntegrationConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             if valid:
                 # See next section on create entry usage
                 return self.async_create_entry(
-                    title="Title of the entry",
+                    title="Hanchu IESS ADB",
                     data={
                         "username": user_input["username"],
                         "password": user_input["password"]

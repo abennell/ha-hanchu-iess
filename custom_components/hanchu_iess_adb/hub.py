@@ -13,20 +13,22 @@ from homeassistant.core import HomeAssistant
 
 
 class Hub:
-    """Dummy hub for Hello World example."""
+    manufacturer = "HANCHUESS"
 
-    manufacturer = "Demonstration Corp"
-
-    def __init__(self, hass: HomeAssistant, host: str) -> None:
-        """Init dummy hub."""
-        self._host = host
+    def __init__(self, hass: HomeAssistant, username: str, password: str) -> None:
+        self._host = "https://iess3.hanchuess.com/"
+        self._username = username
+        self._password = password
         self._hass = hass
-        self._name = host
-        self._id = host.lower()
+        self._name = self.manufacturer
+        self._id = f"{self.manufacturer}_HUB_ADB".Lower()
         self.rollers = [
-            Roller(f"{self._id}_1", f"{self._name} 1", self),
-            Roller(f"{self._id}_2", f"{self._name} 2", self),
-            Roller(f"{self._id}_3", f"{self._name} 3", self),
+            Inverter(id=f"{self._id}_1", 
+                    serial_number="H016174360031",
+                    brand="HANCHU",
+                    model="HESS-HY-S-6.0K",
+                    rated_power="6000",
+                    hub=self)
         ]
         self.online = True
 
@@ -40,15 +42,17 @@ class Hub:
         await asyncio.sleep(1)
         return True
 
-
-class Roller:
+class Inverter:
     """Dummy roller (device for HA) for Hello World example."""
 
-    def __init__(self, rollerid: str, name: str, hub: Hub) -> None:
+    def __init__(self, id: str, serial_number: str, brand: str, model: str, rated_power: int, hub: Hub) -> None:
         """Init dummy roller."""
-        self._id = rollerid
+        self._id = id
         self.hub = hub
-        self.name = name
+        self._serial_number = serial_number
+        self._brand = brand
+        self._model = model
+        self._rated_power = rated_power
         self._callbacks = set()
         self._loop = asyncio.get_event_loop()
         self._target_position = 100
@@ -59,12 +63,31 @@ class Roller:
 
         # Some static information about this device
         self.firmware_version = f"0.0.{random.randint(1, 9)}"
-        self.model = "Test Device"
 
     @property
-    def roller_id(self) -> str:
-        """Return ID for roller."""
+    def id(self) -> str:
+        """Return ID for inverter."""
         return self._id
+    
+    @property
+    def serial_number(self) -> str:
+        """Return serial number for inverter."""
+        return self._serial_number
+    
+    @property
+    def brand(self) -> str:
+        """Return brand for inverter."""
+        return self._brand
+    
+    @property
+    def model(self) -> str:
+        """Return model for inverter."""
+        return self._model
+
+    @property
+    def rated_power(self) -> str:
+        """Return model for inverter."""
+        return self._rated_power
 
     @property
     def position(self):
